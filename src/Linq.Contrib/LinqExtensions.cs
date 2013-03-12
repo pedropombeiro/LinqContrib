@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="LinqExtensions.cs" company="Developer In The Flow">
-//   © 2012-2013 Pedro Pombeiro
+//   © 2013 Pedro Pombeiro
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 namespace Linq.Contrib
@@ -12,6 +12,11 @@ namespace Linq.Contrib
     public static class LinqExtensions
     {
         #region Public Methods and Operators
+
+        public static bool AnyOfType<T>(this IEnumerable source)
+        {
+            return source.OfType<T>().Any();
+        }
 
         public static IEnumerable<IEnumerable<T>> Segment<T>(this IEnumerable<T> source, int segmentSize)
         {
@@ -36,6 +41,11 @@ namespace Linq.Contrib
         public static T SingleOfType<T>(this IEnumerable source)
         {
             return source.OfType<T>().Single();
+        }
+
+        public static T SingleOrDefaultOfType<T>(this IEnumerable source)
+        {
+            return source.OfType<T>().SingleOrDefault();
         }
 
         #endregion

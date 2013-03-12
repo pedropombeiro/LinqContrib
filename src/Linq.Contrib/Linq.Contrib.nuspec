@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Linq.Contrib</id>
+        <version>$version$</version>
+        <title>LINQ Contrib</title>
+        <authors>pombeirp</authors>
+        <owners>Developer In The Flow</owners>
+        <licenseUrl>https://github.com/PombeirP/Linq.Contrib/blob/master/LICENSE.md</licenseUrl>
+        <projectUrl>https://github.com/PombeirP/Linq.Contrib</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>This project provides extension methods that extend the existing set available in LINQ.</description>
+        <releaseNotes />
+        <copyright>Copyright © Pedro Pombeiro 2013</copyright>
+        <tags>LINQ Contrib</tags>
+    </metadata>
+</package>
