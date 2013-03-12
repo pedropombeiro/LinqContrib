@@ -10,11 +10,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Linq.Contrib")]
+[assembly: AssemblyTitle("LinqContrib")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Developer In The Flow")]
-[assembly: AssemblyProduct("Linq.Contrib")]
+[assembly: AssemblyProduct("LinqContrib")]
 [assembly: AssemblyCopyright("Copyright © Pedro Pombeiro 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

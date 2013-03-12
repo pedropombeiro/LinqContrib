@@ -1,4 +1,4 @@
-Linq.Contrib
+LinqContrib
 ====================
 
 This project aims to provide useful additions to the existing LINQ operators available out-of-the-box on the .NET Framework.
@@ -6,7 +6,7 @@ This project aims to provide useful additions to the existing LINQ operators ava
 Usage
 -----
 
-The library consists of extension methods to *IEnumerable* and to *IEnumerable&lt;T&gt;*, so you simply need to import the *Linq.Contrib* namespace and take advantage of the new operators.
+The library consists of extension methods to *IEnumerable* and to *IEnumerable&lt;T&gt;*, so you simply need to import the *LinqContrib* namespace and take advantage of the new operators.
 
 Examples
 -----

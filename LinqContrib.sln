@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq.Contrib", "src\Linq.Contrib\Linq.Contrib.csproj", "{64A040A7-141E-4133-A316-FFB30F82525D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqContrib", "src\LinqContrib\LinqContrib.csproj", "{64A040A7-141E-4133-A316-FFB30F82525D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

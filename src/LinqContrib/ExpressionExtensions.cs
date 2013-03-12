@@ -3,7 +3,7 @@
 //   © 2013 Pedro Pombeiro
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Linq.Contrib
+namespace LinqContrib
 {
     using System;
     using System.Diagnostics;
