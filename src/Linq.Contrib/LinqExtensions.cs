@@ -18,6 +18,21 @@ namespace Linq.Contrib
             return source.OfType<T>().Any();
         }
 
+        public static T FirstOfType<T>(this IEnumerable source)
+        {
+            return source.OfType<T>().First();
+        }
+
+        public static T FirstOrDefaultOfType<T>(this IEnumerable source)
+        {
+            return source.OfType<T>().FirstOrDefault();
+        }
+
+        public static IEnumerable NotOfType<T>(this IEnumerable source)
+        {
+            return source.Cast<object>().Where(x => !(x is T));
+        }
+
         public static IEnumerable<IEnumerable<T>> Segment<T>(this IEnumerable<T> source, int segmentSize)
         {
             var index = 0;
