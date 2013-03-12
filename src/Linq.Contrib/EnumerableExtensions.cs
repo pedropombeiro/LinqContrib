@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LinqExtensions.cs" company="Developer In The Flow">
+// <copyright file="EnumerableExtensions.cs" company="Developer In The Flow">
 //   © 2013 Pedro Pombeiro
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -9,9 +9,14 @@ namespace Linq.Contrib
     using System.Collections.Generic;
     using System.Linq;
 
-    public static class LinqExtensions
+    public static class EnumerableExtensions
     {
         #region Public Methods and Operators
+
+        public static bool Any(this IEnumerable source)
+        {
+            return Enumerable.Any(source.Cast<object>());
+        }
 
         public static bool AnyOfType<T>(this IEnumerable source)
         {
