@@ -13,19 +13,19 @@ namespace LinqContrib
     {
         #region Public Methods and Operators
 
-        public static bool IsCountEqual<T>(this IEnumerable<T> source, int expectedCount)
-        {            
+        public static bool IsCountEqualTo<T>(this IEnumerable<T> source, int expectedCount)
+        {
             return source.Take(expectedCount + 1).Count() == expectedCount;
         }
 
-        public static bool IsCountGreater<T>(this IEnumerable<T> source, int comparisonCount)
-        {           
+        public static bool IsCountGreaterThan<T>(this IEnumerable<T> source, int comparisonCount)
+        {
             return source.Skip(comparisonCount).Any();
         }
 
-        public static bool IsCountSmaller<T>(this IEnumerable<T> source, int comparisonCount)
+        public static bool IsCountSmallerThan<T>(this IEnumerable<T> source, int comparisonCount)
         {
-            return !source.Skip(comparisonCount-1).Any();
+            return !source.Skip(comparisonCount - 1).Any();
         }
 
         public static bool Any(this IEnumerable source)
@@ -59,8 +59,8 @@ namespace LinqContrib
 
             for (;;)
             {
-// ReSharper disable PossibleMultipleEnumeration
-                var sourceSegment = source.Skip(index++ * segmentSize)
+                // ReSharper disable PossibleMultipleEnumeration
+                var sourceSegment = source.Skip(index++*segmentSize)
                                           .Take(segmentSize);
                 if (!sourceSegment.Any())
                 {
@@ -69,7 +69,7 @@ namespace LinqContrib
 
                 yield return sourceSegment;
 
-// ReSharper restore PossibleMultipleEnumeration
+                // ReSharper restore PossibleMultipleEnumeration
             }
         }
 
