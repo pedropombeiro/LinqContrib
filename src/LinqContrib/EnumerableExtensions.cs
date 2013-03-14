@@ -13,6 +13,23 @@ namespace LinqContrib
     {
         #region Public Methods and Operators
 
+        public static bool IsCountEqual<T>(this IEnumerable<T> source, int alledgedCount)
+        {
+            // naive implementation, could be optimized in cases where Count is > alledgedCount.
+            return source.Count() == alledgedCount;
+        }
+
+        public static bool IsCountGreater<T>(this IEnumerable<T> source, int comparisonCount)
+        {
+            // naive implementation, could be optimized in cases where Count is > alledgedCount.
+            return source.Count() > comparisonCount;
+        }
+
+        public static bool IsCountSmaller<T>(this IEnumerable<T> source, int comparisonCount)
+        {           
+            return source.Count() < comparisonCount;
+        }
+
         public static bool Any(this IEnumerable source)
         {
             return Enumerable.Any(source.Cast<object>());
