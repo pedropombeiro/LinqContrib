@@ -14,20 +14,18 @@ namespace LinqContrib
         #region Public Methods and Operators
 
         public static bool IsCountEqual<T>(this IEnumerable<T> source, int expectedCount)
-        {
-            // naive implementation, could be optimized in cases where Count is > expectedCount.
-            return source.Count() == expectedCount;
+        {            
+            return source.Take(expectedCount + 1).Count() == expectedCount;
         }
 
         public static bool IsCountGreater<T>(this IEnumerable<T> source, int comparisonCount)
-        {
-            // naive implementation, could be optimized in cases where Count is > comparisonCount.
-            return source.Count() > comparisonCount;
+        {           
+            return source.Skip(comparisonCount).Any();
         }
 
         public static bool IsCountSmaller<T>(this IEnumerable<T> source, int comparisonCount)
-        {           
-            return source.Count() < comparisonCount;
+        {
+            return !source.Skip(comparisonCount-1).Any();
         }
 
         public static bool Any(this IEnumerable source)
