@@ -14,7 +14,7 @@ namespace LinqContrib
     {                
         #region Public Methods and Operators
 
-        public static object SingleOrThrow<T, TException>(this IEnumerable<T> source, Func<Exception, TException> exceptionToThrow ) where TException : Exception
+        public static T SingleOrThrow<T, TException>(this IEnumerable<T> source, Func<Exception, TException> exceptionToThrow ) where TException : Exception
         {
             var singleElement = default(T);
             try
