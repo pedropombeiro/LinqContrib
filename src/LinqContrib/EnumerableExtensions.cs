@@ -74,6 +74,18 @@ namespace LinqContrib
             }
         }
 
+        public static TSource Single<TSource, TException>(this IEnumerable<TSource> source, Func<TSource, bool> predicate, Func<TException> exceptionToThrow)
+            where TException : Exception
+        {
+            switch (source.Count(predicate))
+            {
+                case 1:
+                    return source.Single(predicate);
+                default:
+                    throw exceptionToThrow();
+            }
+        }
+
         public static T SingleOfType<T>(this IEnumerable source)
         {
             return source.OfType<T>().Single();
@@ -84,25 +96,13 @@ namespace LinqContrib
             return source.OfType<T>().SingleOrDefault();
         }
 
-        public static T SingleOrThrow<T, TException>(this IEnumerable<T> source, Func<TException> exceptionToThrow) 
+        public static T SingleOrThrow<T, TException>(this IEnumerable<T> source, Func<TException> exceptionToThrow)
             where TException : Exception
         {
             switch (source.Take(2).Count())
             {
                 case 1:
                     return source.First();
-                default:
-                    throw exceptionToThrow();
-            }
-        }
-
-        public static TSource Single<TSource, TException>(this IEnumerable<TSource> source, Func<TSource, bool> predicate, Func<TException> exceptionToThrow)
-            where TException : Exception
-        {
-            switch (source.Count(predicate))
-            {
-                case 1:
-                    return source.Single(predicate);
                 default:
                     throw exceptionToThrow();
             }

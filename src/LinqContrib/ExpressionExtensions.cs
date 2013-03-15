@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PropertyHelper.cs" company="Developer In The Flow">
+// <copyright file="ExpressionExtensions.cs" company="Developer In The Flow">
 //   © 2013 Pedro Pombeiro
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
