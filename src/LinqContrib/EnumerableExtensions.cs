@@ -19,42 +19,57 @@ namespace LinqContrib
             return Enumerable.Any(source.Cast<object>());
         }
 
-        public static bool AnyOfType<T>(this IEnumerable source)
+        public static bool AnyOfType<TSource>(this IEnumerable source)
         {
-            return source.OfType<T>().Any();
+            return source.OfType<TSource>().Any();
         }
 
-        public static T FirstOfType<T>(this IEnumerable source)
+        public static TSource FirstOfType<TSource>(this IEnumerable source)
         {
-            return source.OfType<T>().First();
+            return source.OfType<TSource>().First();
         }
 
-        public static T FirstOrDefaultOfType<T>(this IEnumerable source)
+        public static TSource FirstOrDefaultOfType<TSource>(this IEnumerable source)
         {
-            return source.OfType<T>().FirstOrDefault();
+            return source.OfType<TSource>().FirstOrDefault();
         }
 
-        public static bool IsCountEqual<T>(this IEnumerable<T> source, int expectedCount)
+        public static bool IsCountEqual<TSource>(this IEnumerable<TSource> source, int expectedCount)
         {
             return source.Take(expectedCount + 1).Count() == expectedCount;
         }
 
-        public static bool IsCountGreater<T>(this IEnumerable<T> source, int comparisonCount)
+        public static bool IsCountEqual<TSource>(this IEnumerable<TSource> source, int expectedCount, Func<TSource, bool> predicate)
+        {
+            return source.Where(predicate).Take(expectedCount + 1).Count() == expectedCount;
+        }
+
+        public static bool IsCountGreater<TSource>(this IEnumerable<TSource> source, int comparisonCount)
         {
             return source.Skip(comparisonCount).Any();
         }
 
-        public static bool IsCountSmaller<T>(this IEnumerable<T> source, int comparisonCount)
+        public static bool IsCountGreater<TSource>(this IEnumerable<TSource> source, int comparisonCount, Func<TSource, bool> predicate)
+        {
+            return source.Where(predicate).Skip(comparisonCount).Any();
+        }
+
+        public static bool IsCountSmaller<TSource>(this IEnumerable<TSource> source, int comparisonCount)
         {
             return !source.Skip(comparisonCount - 1).Any();
         }
 
-        public static IEnumerable NotOfType<T>(this IEnumerable source)
+        public static bool IsCountSmaller<TSource>(this IEnumerable<TSource> source, int comparisonCount, Func<TSource, bool> predicate)
         {
-            return source.Cast<object>().Where(x => !(x is T));
+            return !source.Where(predicate).Skip(comparisonCount - 1).Any();
         }
 
-        public static IEnumerable<IEnumerable<T>> Segment<T>(this IEnumerable<T> source, int segmentSize)
+        public static IEnumerable NotOfType<TSource>(this IEnumerable source)
+        {
+            return source.Cast<object>().Where(x => !(x is TSource));
+        }
+
+        public static IEnumerable<IEnumerable<TSource>> Segment<TSource>(this IEnumerable<TSource> source, int segmentSize)
         {
             var index = 0;
 
@@ -86,17 +101,17 @@ namespace LinqContrib
             }
         }
 
-        public static T SingleOfType<T>(this IEnumerable source)
+        public static TSource SingleOfType<TSource>(this IEnumerable source)
         {
-            return source.OfType<T>().Single();
+            return source.OfType<TSource>().Single();
         }
 
-        public static T SingleOrDefaultOfType<T>(this IEnumerable source)
+        public static TSource SingleOrDefaultOfType<TSource>(this IEnumerable source)
         {
-            return source.OfType<T>().SingleOrDefault();
+            return source.OfType<TSource>().SingleOrDefault();
         }
 
-        public static T SingleOrThrow<T, TException>(this IEnumerable<T> source, Func<TException> exceptionToThrow)
+        public static TSource SingleOrThrow<TSource, TException>(this IEnumerable<TSource> source, Func<TException> exceptionToThrow)
             where TException : Exception
         {
             switch (source.Take(2).Count())
