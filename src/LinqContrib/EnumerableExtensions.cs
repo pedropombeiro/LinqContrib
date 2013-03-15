@@ -11,38 +11,8 @@ namespace LinqContrib
     using System.Linq;
 
     public static class EnumerableExtensions
-    {                
+    {
         #region Public Methods and Operators
-
-        public static T SingleOrThrow<T, TException>(this IEnumerable<T> source, Func<Exception, TException> exceptionToThrow ) where TException : Exception
-        {
-            var singleElement = default(T);
-            try
-            {
-                singleElement = source.Single();
-            }
-            catch (Exception e)
-            {
-                exceptionToThrow(e);
-            }
-
-            return singleElement;
-        }
-
-        public static bool IsCountEqual<T>(this IEnumerable<T> source, int expectedCount)
-        {            
-            return source.Take(expectedCount + 1).Count() == expectedCount;
-        }
-
-        public static bool IsCountGreater<T>(this IEnumerable<T> source, int comparisonCount)
-        {           
-            return source.Skip(comparisonCount).Any();
-        }
-
-        public static bool IsCountSmaller<T>(this IEnumerable<T> source, int comparisonCount)
-        {
-            return !source.Skip(comparisonCount-1).Any();
-        }
 
         public static bool Any(this IEnumerable source)
         {
@@ -62,6 +32,21 @@ namespace LinqContrib
         public static T FirstOrDefaultOfType<T>(this IEnumerable source)
         {
             return source.OfType<T>().FirstOrDefault();
+        }
+
+        public static bool IsCountEqual<T>(this IEnumerable<T> source, int expectedCount)
+        {
+            return source.Take(expectedCount + 1).Count() == expectedCount;
+        }
+
+        public static bool IsCountGreater<T>(this IEnumerable<T> source, int comparisonCount)
+        {
+            return source.Skip(comparisonCount).Any();
+        }
+
+        public static bool IsCountSmaller<T>(this IEnumerable<T> source, int comparisonCount)
+        {
+            return !source.Skip(comparisonCount - 1).Any();
         }
 
         public static IEnumerable NotOfType<T>(this IEnumerable source)
@@ -97,6 +82,30 @@ namespace LinqContrib
         public static T SingleOrDefaultOfType<T>(this IEnumerable source)
         {
             return source.OfType<T>().SingleOrDefault();
+        }
+
+        public static T SingleOrThrow<T, TException>(this IEnumerable<T> source, Func<TException> exceptionToThrow) 
+            where TException : Exception
+        {
+            switch (source.Take(2).Count())
+            {
+                case 1:
+                    return source.First();
+                default:
+                    throw exceptionToThrow();
+            }
+        }
+
+        public static TSource Single<TSource, TException>(this IEnumerable<TSource> source, Func<TSource, bool> predicate, Func<TException> exceptionToThrow)
+            where TException : Exception
+        {
+            switch (source.Count(predicate))
+            {
+                case 1:
+                    return source.Single(predicate);
+                default:
+                    throw exceptionToThrow();
+            }
         }
 
         #endregion
