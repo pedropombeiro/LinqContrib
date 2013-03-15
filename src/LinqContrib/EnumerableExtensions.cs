@@ -5,13 +5,29 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace LinqContrib
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
     public static class EnumerableExtensions
-    {
+    {                
         #region Public Methods and Operators
+
+        public static object SingleOrThrow<T, TException>(this IEnumerable<T> source, Func<Exception, TException> exceptionToThrow ) where TException : Exception
+        {
+            var singleElement = default(T);
+            try
+            {
+                singleElement = source.Single();
+            }
+            catch (Exception e)
+            {
+                exceptionToThrow(e);
+            }
+
+            return singleElement;
+        }
 
         public static bool IsCountEqual<T>(this IEnumerable<T> source, int expectedCount)
         {            
